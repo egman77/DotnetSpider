@@ -10,6 +10,10 @@ using System.Collections.Generic;
 
 namespace DotnetSpider.Sample
 {
+
+	/// <summary>
+	/// (没有被使用)
+	/// </summary>
 	[TaskName("TestSpider")]
 	public class TestSpider : EntitySpider
 	{
@@ -29,29 +33,47 @@ namespace DotnetSpider.Sample
 		[Entity(Expression = ".//div[@class='result']", Type = SelectorType.XPath)]
 		class BaiduSearchEntry : BaseEntity
 		{
+			/// <summary>
+			/// 关键词
+			/// </summary>
 			[Column]
 			[Field(Expression = "Keyword", Type = SelectorType.Enviroment)]
 			public string Keyword { get; set; }
 
+			/// <summary>
+			/// 标题
+			/// </summary>
 			[Column]
 			[Field(Expression = ".//h3[@class='c-title']/a")]
 			[ReplaceFormatter(NewValue = "", OldValue = "<em>")]
 			[ReplaceFormatter(NewValue = "", OldValue = "</em>")]
 			public string Title { get; set; }
 
+			/// <summary>
+			/// URL地址
+			/// </summary>
 			[Column]
 			[Field(Expression = ".//h3[@class='c-title']/a/@href")]
 			public string Url { get; set; }
 
+			/// <summary>
+			/// 所在网站
+			/// </summary>
 			[Column]
 			[Field(Expression = ".//div/p[@class='c-author']/text()")]
 			[ReplaceFormatter(NewValue = "-", OldValue = "&nbsp;")]
 			public string Website { get; set; }
 
+			/// <summary>
+			/// 快照
+			/// </summary>
 			[Column]
 			[Field(Expression = ".//div/span/a[@class='c-cache']/@href")]
 			public string Snapshot { get; set; }
 
+			/// <summary>
+			/// 明细
+			/// </summary>
 			[Column]
 			[Field(Expression = ".//div[@class='c-summary c-row ']", Option = FieldOptions.InnerText)]
 			[ReplaceFormatter(NewValue = "", OldValue = "<em>")]
@@ -59,6 +81,9 @@ namespace DotnetSpider.Sample
 			[ReplaceFormatter(NewValue = " ", OldValue = "&nbsp;")]
 			public string Details { get; set; }
 
+			/// <summary>
+			///简单文本
+			/// </summary>
 			[Column(0)]
 			[Field(Expression = ".", Option = FieldOptions.InnerText)]
 			[ReplaceFormatter(NewValue = "", OldValue = "<em>")]
