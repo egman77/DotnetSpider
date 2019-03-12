@@ -5,6 +5,7 @@ using DotnetSpider.Core.Processor.Filter;
 using DotnetSpider.Core.Processor.RequestExtractor;
 using DotnetSpider.Core.Scheduler;
 using DotnetSpider.Downloader;
+using DotnetSpider.Extension.Pipeline;
 
 namespace DotnetSpider.Sample.docs
 {
@@ -18,12 +19,14 @@ namespace DotnetSpider.Sample.docs
 				// default page processor will save whole html, and extract urls to target urls via regex
 				new DefaultPageProcessor
 				{
-					Filter = new PatternFilter(new[] { "cnblogs\\.com" }),
+					//只提取含动
+					//Filter = new PatternFilter(new[] { @"cnblogs\.com" }),
+					Filter = new PatternFilter(new[] { @"cvoit\.com" }),
 					RequestExtractor = new XPathRequestExtractor(".")
 				})
 				// save crawler result to file in the folder: \{running directory}\data\{crawler identity}\{guid}.dsd
 				.AddPipeline(new FilePipeline());
-
+			    //  .AddPipeline(new ConsoleEntityPipeline());
 			// dowload html by http client
 			spider.Downloader = new HttpClientDownloader();
 			spider.Name = "CNBLOGS";
@@ -36,7 +39,9 @@ namespace DotnetSpider.Sample.docs
 			// stop crawler if it can't get url from the scheduler after 30000 ms 当爬虫连续30秒无法从调度中心取得需要采集的链接时结束.
 			spider.EmptySleepTime = 30000;
 			// Set start/seed url
-			spider.AddRequests("http://www.cnblogs.com/");
+			//spider.AddRequests("http://www.cnblogs.com/");
+			spider.AddRequests("http://www.cvoit.com");
+			//spider.AddRequests("http://www.cnblogs.com");
 			// start crawler 启动爬虫
 			spider.Run();
 		}

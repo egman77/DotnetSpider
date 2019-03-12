@@ -41,7 +41,10 @@ namespace DotnetSpider.Sample
 			//Crawl_csdnAutoIncrement();
 
 			//抓某网站的内容,传入cookie内容
-			Crawl_xxCookie();
+			//Crawl_xxCookie();
+
+			//抓cnblogs整站
+			Crawl_cnblogsWholeStie();
 		}
 
 
@@ -102,5 +105,19 @@ namespace DotnetSpider.Sample
 
 
 		}
+
+		/// <summary>
+		/// <c>MyTest</c> is a method in the <c>Program</c>
+		/// </summary>
+		private static void Crawl_cnblogsWholeStie()
+		{
+			//抓cnblogs整站
+			CrawlerWholeSiteSpider.Run();
+			
+
+
+		}
+
+		
 	}
 }
