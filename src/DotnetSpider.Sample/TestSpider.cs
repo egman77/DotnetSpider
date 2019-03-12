@@ -26,7 +26,9 @@ namespace DotnetSpider.Sample
 			var word = "可乐|雪碧";
 			AddRequest(string.Format("http://news.baidu.com/ns?word={0}&tn=news&from=news&cl=2&pn=0&rn=20&ct=1", word), new Dictionary<string, dynamic> { { "Keyword", word } });
 			AddEntityType<BaiduSearchEntry>();
-			AddPipeline(new MySqlEntityPipeline("Database='mysql';Data Source=localhost;User ID=root;Port=3306;SslMode=None;"));
+			//AddPipeline(new MySqlEntityPipeline("Database='mysql';Data Source=localhost;User ID=root;Port=3306;SslMode=None;"));
+			this.AddPipeline(new ConsoleEntityPipeline()); //控制台的管道
+
 		}
 
 		[Schema("baidu", "baidu_search_entity_model")]

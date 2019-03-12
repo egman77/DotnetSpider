@@ -26,16 +26,23 @@ namespace DotnetSpider.Sample
 			//	ContentType = "application/json"
 			//});
 
- 
-			EntityModelSpider.Run();
+			//抓百度搜索的练习
+			//EntityModelSpider.Run();
+
+			//抓百度搜索的练习
+			Crawl_BaiduSearch();
 		}
 
 
 		/// <summary>
 		/// <c>MyTest</c> is a method in the <c>Program</c>
 		/// </summary>
-		private static void MyTest()
+		private static void Crawl_BaiduSearch()
 		{
+			//抓百度搜索的练习
+			var spider = new TestSpider();
+			spider.Run();
+
 		}
 	}
 }

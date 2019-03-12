@@ -26,9 +26,9 @@ namespace DotnetSpider.Sample.docs
 			protected override void OnInit(params string[] arguments)
 			{
 				var word = "可乐|雪碧";
-				AddRequest(string.Format("http://news.baidu.com/ns?word={0}&tn=news&from=news&cl=2&pn=0&rn=20&ct=1", word), new Dictionary<string, dynamic> { { "Keyword", word } });
-				AddEntityType<BaiduSearchEntry>();
-				AddPipeline(new ConsoleEntityPipeline());
+				this.AddRequest(string.Format("http://news.baidu.com/ns?word={0}&tn=news&from=news&cl=2&pn=0&rn=20&ct=1", word), new Dictionary<string, dynamic> { { "Keyword", word } });
+				this.AddEntityType<BaiduSearchEntry>();
+				this.AddPipeline(new ConsoleEntityPipeline()); //控制台的管道
 			}
 
 			[Schema("baidu", "baidu_search_entity_model")]
