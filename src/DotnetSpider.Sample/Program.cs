@@ -30,7 +30,12 @@ namespace DotnetSpider.Sample
 			//EntityModelSpider.Run();
 
 			//抓百度搜索的练习
-			Crawl_BaiduSearch();
+			//Crawl_BaiduSearch();
+
+			//Crawl_BaiduSearch2();
+
+			//新浪新闻
+			Crawl_SinaSearch();
 		}
 
 
@@ -42,6 +47,32 @@ namespace DotnetSpider.Sample
 			//抓百度搜索的练习
 			var spider = new TestSpider();
 			spider.Run();
+
+		}
+
+		/// <summary>
+		/// <c>MyTest</c> is a method in the <c>Program</c>
+		/// </summary>
+		private static void Crawl_BaiduSearch2()
+		{
+			////抓百度搜索的练习
+			//OrmSpider.Run();
+
+
+			
+		}
+
+
+		/// <summary>
+		/// <c>MyTest</c> is a method in the <c>Program</c>
+		/// </summary>
+		private static void Crawl_SinaSearch()
+		{
+			//抓新浪新闻的练习
+			AfterDownloadCompleteHandlerSpider.Run();
+			
+
+
 
 		}
 	}

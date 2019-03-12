@@ -27,7 +27,9 @@ namespace DotnetSpider.Sample.docs
 
 			protected override void OnInit(params string[] arguments)
 			{
-				AddRequest($"http://api.search.sina.com.cn/?c=news&t=&q=赵丽颖&pf=2136012948&ps=2130770082&page=0&stime={DateTime.Now.AddYears(-7).AddDays(-1).ToString("yyyy-MM-dd")}&etime={DateTime.Now.AddDays(1).ToString("yyyy-MM-dd")}&sort=rel&highlight=1&num=10&ie=utf-8&callback=jQuery1720001955628746606708_1508996230766&_=1508996681484", new Dictionary<string, dynamic> { { "keyword", "赵丽颖" } });
+				var url = $"http://api.search.sina.com.cn/?c=news&t=&q=赵丽颖&pf=2136012948&ps=2130770082&page=0&stime={DateTime.Now.AddYears(-7).AddDays(-1).ToString("yyyy-MM-dd")}&etime={DateTime.Now.AddDays(1).ToString("yyyy-MM-dd")}&sort=rel&highlight=1&num=10&ie=utf-8&callback=jQuery1720001955628746606708_1508996230766&_=1508996681484";
+
+				AddRequest( url,new Dictionary<string, dynamic> { { "keyword", "赵丽颖" } });
 				AddPipeline(new ConsoleEntityPipeline());
 				Downloader = new HttpClientDownloader();
 				Downloader.AddAfterDownloadCompleteHandler(new ReplaceHandler());
@@ -103,24 +105,45 @@ namespace DotnetSpider.Sample.docs
 			[Entity(Expression = "$.result.list[*]", Type = SelectorType.JsonPath)]
 			class SinaNews : BaseEntity
 			{
+				/// <summary>
+				/// 标题
+				/// </summary>
 				[Field(Expression = "$.origin_title", Type = SelectorType.JsonPath, Option = FieldOptions.InnerText)]
 				public string Title { get; set; }
 
+				/// <summary>
+				/// 链接
+				/// </summary>
 				[Field(Expression = "$.url", Type = SelectorType.JsonPath)]
 				public string Link { get; set; }
 
+				/// <summary>
+				/// 关键词
+				/// </summary>
 				[Field(Expression = "keyword", Type = SelectorType.Enviroment)]
 				public string Keywords { get; set; }
 
+				/// <summary>
+				/// 摘要
+				/// </summary>
 				[Field(Expression = "$.intro", Type = SelectorType.JsonPath, Option = FieldOptions.InnerText)]
 				public string Summary { get; set; }
 
+				/// <summary>
+				/// 新闻来源
+				/// </summary>
 				[Field(Expression = "$.media", Type = SelectorType.JsonPath)]
 				public string NewsFrom { get; set; }
 
+				/// <summary>
+				/// 发行时间
+				/// </summary>
 				[Field(Expression = "$.datetime", Type = SelectorType.JsonPath)]
 				public string PublishTime { get; set; }
 
+				/// <summary>
+				/// C编号
+				/// </summary>
 				[Field(Expression = "$.cid", Type = SelectorType.JsonPath)]
 				public string Cid { get; set; }
 			}
