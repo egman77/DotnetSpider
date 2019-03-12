@@ -7,7 +7,7 @@ using System;
 
 namespace DotnetSpider.Sample.docs
 {
-	public class AutoIncrementTargetRequestExtractorrSpider
+	public class AutoIncrementTargetRequestExtractorSpider
 	{
 		public static void Run()
 		{

@@ -35,7 +35,10 @@ namespace DotnetSpider.Sample
 			//Crawl_BaiduSearch2();
 
 			//新浪新闻
-			Crawl_SinaSearch();
+			//Crawl_SinaSearch();
+
+			//抓csdn 新闻 自增请求
+			Crawl_csdnAutoIncrement();
 		}
 
 
@@ -72,6 +75,15 @@ namespace DotnetSpider.Sample
 			AfterDownloadCompleteHandlerSpider.Run();
 			
 
+		}
+
+		/// <summary>
+		/// <c>MyTest</c> is a method in the <c>Program</c>
+		/// </summary>
+		private static void Crawl_csdnAutoIncrement()
+		{
+			//抓csdn 新闻 自增请求 (按页请求)
+			AutoIncrementTargetRequestExtractorSpider.Run();
 
 
 		}
