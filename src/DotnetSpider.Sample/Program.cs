@@ -38,7 +38,10 @@ namespace DotnetSpider.Sample
 			//Crawl_SinaSearch();
 
 			//抓csdn 新闻 自增请求
-			Crawl_csdnAutoIncrement();
+			//Crawl_csdnAutoIncrement();
+
+			//抓某网站的内容,传入cookie内容
+			Crawl_xxCookie();
 		}
 
 
@@ -84,6 +87,18 @@ namespace DotnetSpider.Sample
 		{
 			//抓csdn 新闻 自增请求 (按页请求)
 			AutoIncrementTargetRequestExtractorSpider.Run();
+
+
+		}
+
+		/// <summary>
+		/// <c>MyTest</c> is a method in the <c>Program</c>
+		/// </summary>
+		private static void Crawl_xxCookie()
+		{
+			//抓csdn 新闻 自增请求 (按页请求)
+			var spider=new CookiesSpider();
+			spider.Run();
 
 
 		}
