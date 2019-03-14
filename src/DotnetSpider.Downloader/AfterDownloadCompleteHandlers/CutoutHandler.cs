@@ -54,6 +54,7 @@ namespace DotnetSpider.Downloader.AfterDownloadCompleteHandlers
 
 			if (begin < 0)
 			{
+				//找不到开始的特征值
 				throw new DownloaderException($"Cutout failed, can not find begin string: {_startPart}");
 			}
 
@@ -67,9 +68,11 @@ namespace DotnetSpider.Downloader.AfterDownloadCompleteHandlers
 
 			if (begin < 0 || length < 0)
 			{
+				//没有匹配得上
 				throw new DownloaderException("Cutout failed. Please check your settings");
 			}
 
+			//裁剪
 			string newRawText = text.Substring(begin, length).Trim();
 			response.Content = newRawText;
 		}

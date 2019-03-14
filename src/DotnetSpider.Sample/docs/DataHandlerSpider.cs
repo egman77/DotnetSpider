@@ -13,6 +13,9 @@ using System.Collections.Generic;
 
 namespace DotnetSpider.Sample.docs
 {
+	/// <summary>
+	/// 数据处理
+	/// </summary>
 	public class DataHandlerSpider
 	{
 		public static void Run()
@@ -28,12 +31,14 @@ namespace DotnetSpider.Sample.docs
 				var price = float.Parse(data.price);
 				var sold = int.Parse(data.sold);
 
+				//价格区间在[100-5000]之间的,销售量小于1的,不处理
 				if (price >= 100 && price < 5000)
 				{
 					if (sold <= 1)
 					{
 						if (!page.SkipTargetRequests)
 						{
+							//跳过当前页的处理
 							page.SkipTargetRequests = true;
 						}
 					}
@@ -41,13 +46,14 @@ namespace DotnetSpider.Sample.docs
 					{
 						return;
 					}
-				}
+				}//价格区间在[0-100]之间的,销售量小于5的,不处理
 				else if (price < 100)
 				{
 					if (sold <= 5)
 					{
 						if (!page.SkipTargetRequests)
 						{
+							//跳过当前页处理
 							page.SkipTargetRequests = true;
 						}
 					}
@@ -58,10 +64,12 @@ namespace DotnetSpider.Sample.docs
 				}
 				else
 				{
+					//销售量为0的不处理
 					if (sold == 0)
 					{
 						if (!page.SkipTargetRequests)
 						{
+							//跳过当前页处理
 							page.SkipTargetRequests = true;
 						}
 					}
@@ -95,11 +103,12 @@ namespace DotnetSpider.Sample.docs
 					{ "Cache-Control","max-age=0" },
 					{ "Upgrade-Insecure-Requests","1" }
 				});
+				//下载完成后处理
 				Downloader.AddAfterDownloadCompleteHandler(new CutoutHandler("g_page_config = {", "g_srp_loadCss();", 16, 22));
 				AddBeforeProcessor(new MyBeforeProcessorHandler());
 				SkipTargetRequestsWhenResultIsEmpty = true;
 				AddRequest(new Request("https://s.taobao.com/search?q=妙可蓝多&imgfile=&js=1&stats_click=search_radio_all%3A1&ie=utf8&sort=sale-desc&s=0&tab=all", new Dictionary<string, dynamic> { { "bidwordstr", "妙可蓝多" } }));
-				AddEntityType<TaobaoItem>(new MyDataHanlder());
+				AddEntityType<TaobaoItem>(new MyDataHanlder()); //对采集的数据进行干预处理
 				AddPipeline(new ConsoleEntityPipeline());
 			}
 		}

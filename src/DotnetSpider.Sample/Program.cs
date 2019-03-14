@@ -49,8 +49,14 @@ namespace DotnetSpider.Sample
 			//抓携程数据
 			//Crawl_ctripCity();
 
+			//采优酷
 			//Crawl_youku();
-			Crawl_BaiduSearch3_Formatted();
+
+			//对百度的实体属性进行格式化处理
+			//Crawl_BaiduSearch3_Formatted();
+
+			//对淘宝的商品按数据量处理
+			Crawl_taobao_DataHandler();
 		}
 
 
@@ -139,6 +145,13 @@ namespace DotnetSpider.Sample
 		{
 			//格式化实体的属性
 			CustomizeFormatterSpider.Run();
+		}
+
+		private static void Crawl_taobao_DataHandler()
+		{
+			//淘宝对商品按销售量进行处理
+			DataHandlerSpider.Run();
+			
 		}
 
 	}
