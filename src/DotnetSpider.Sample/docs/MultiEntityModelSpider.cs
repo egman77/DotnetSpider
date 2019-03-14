@@ -21,11 +21,14 @@ namespace DotnetSpider.Sample.docs
 			{
 				Identity = ("cnblogs_" + DateTime.Now.ToString("yyyy_MM_dd_HHmmss"));
 				AddRequests("http://www.cnblogs.com");
-				//AddRequests("https://www.cnblogs.com/news/");
+				AddRequests("https://www.cnblogs.com/news/");  //注意,这里请求的是https
 				AddPipeline(new ConsoleEntityPipeline());
-				//AddEntityType<News>().Filter = new PatternFilter("^http://www\\.cnblogs\\.com/news/$", "www\\.cnblogs\\.com/news/\\d+");
-				//AddEntityType<BlogSumary>().Filter = new PatternFilter("^http://www\\.cnblogs\\.com/$", "http://www\\.cnblogs\\.com/sitehome/p/\\d+");
-				AddEntityType<BlogSumary>();
+
+				//这里的过滤是针对 request.Url进行筛选!
+				AddEntityType<News>().Filter = new PatternFilter("^https://www\\.cnblogs\\.com/news/?$", "www\\.cnblogs\\.com/news/\\d+");
+				AddEntityType<BlogSumary>().Filter = new PatternFilter(@"^http://www\.cnblogs\.com/?$", @"http://www\.cnblogs\.com/sitehome/p/\d+");
+				//AddEntityType<BlogSumary>();
+				//AddEntityType<News>();
 			}
 
 
