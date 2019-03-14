@@ -21,12 +21,17 @@ namespace DotnetSpider.Sample.docs
 			{
 				Identity = ("cnblogs_" + DateTime.Now.ToString("yyyy_MM_dd_HHmmss"));
 				AddRequests("http://www.cnblogs.com");
-				AddRequests("https://www.cnblogs.com/news/");
+				//AddRequests("https://www.cnblogs.com/news/");
 				AddPipeline(new ConsoleEntityPipeline());
-				AddEntityType<News>().Filter = new PatternFilter("^http://www\\.cnblogs\\.com/news/$", "www\\.cnblogs\\.com/news/\\d+");
-				AddEntityType<BlogSumary>().Filter = new PatternFilter("^http://www\\.cnblogs\\.com/$", "http://www\\.cnblogs\\.com/sitehome/p/\\d+");
+				//AddEntityType<News>().Filter = new PatternFilter("^http://www\\.cnblogs\\.com/news/$", "www\\.cnblogs\\.com/news/\\d+");
+				//AddEntityType<BlogSumary>().Filter = new PatternFilter("^http://www\\.cnblogs\\.com/$", "http://www\\.cnblogs\\.com/sitehome/p/\\d+");
+				AddEntityType<BlogSumary>();
 			}
 
+
+			/// <summary>
+			/// 新闻类
+			/// </summary>
 			[Entity(Expression = "//div[@class='post_item']")]
 			class News : BaseEntity
 			{
@@ -54,7 +59,10 @@ namespace DotnetSpider.Sample.docs
 				[Field(Expression = ".//a[@class='titlelnk']/@href")]
 				public string Url { get; set; }
 			}
-
+			
+			/// <summary>
+			/// 博客类
+			/// </summary>
 			[Entity(Expression = "//div[@class='post_item']")]
 			class BlogSumary : BaseEntity
 			{

@@ -65,7 +65,10 @@ namespace DotnetSpider.Sample
 			//Crawl_baiduToMySql();
 
 			//抓博客园
-			Crawl_cnblog();
+			//Crawl_cnblog();
+
+			//多个请求,多个实体,互不干扰方式抓取
+			Crawl_multiEntity();
 		}
 
 
@@ -187,6 +190,12 @@ namespace DotnetSpider.Sample
 			//抓cnblog 博客园
 			var spider = new ExcelSpider();
 			spider.Run();
+		}
+
+		private static void Crawl_multiEntity()
+		{
+			//多个请求,多个实体,互不干扰方式抓取
+			MultiEntityModelSpider.Run();
 		}
 	}
 }
