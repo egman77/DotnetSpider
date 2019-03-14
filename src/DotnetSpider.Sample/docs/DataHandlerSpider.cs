@@ -114,7 +114,9 @@ namespace DotnetSpider.Sample.docs
 				//Downloader.AddAfterDownloadCompleteHandler(new CutoutHandler("<div class=\"grid g-clearfix\">", "<div class=\"items\" id=\"J_itemlistCont\">", 0, 0));
 				AddBeforeProcessor(new MyBeforeProcessorHandler());
 				SkipTargetRequestsWhenResultIsEmpty = true;
-				AddRequest(new Request("https://s.taobao.com/search?q=妙可蓝多&imgfile=&js=1&stats_click=search_radio_all%3A1&ie=utf8&sort=sale-desc&s=0&tab=all", new Dictionary<string, dynamic> { { "bidwordstr", "妙可蓝多" } }));
+				//AddRequest(new Request("https://s.taobao.com/search?q=妙可蓝多&imgfile=&js=1&stats_click=search_radio_all%3A1&ie=utf8&sort=sale-desc&s=0&tab=all", new Dictionary<string, dynamic> { { "bidwordstr", "妙可蓝多" } }));
+				//淘宝以 &data-value=132 ,每页44条方式累加
+				AddRequest(new Request("https://s.taobao.com/search?q=OA&imgfile=&js=1&stats_click=search_radio_all%3A1&ie=utf8&sort=sale-desc&s=0&tab=all", new Dictionary<string, dynamic> { { "bidwordstr", "妙可蓝多" } }));
 				AddEntityType<TaobaoItem>(new MyDataHanlder()); //对采集的数据进行干预处理
 				AddPipeline(new ConsoleEntityPipeline());
 			}
@@ -170,6 +172,13 @@ namespace DotnetSpider.Sample.docs
 			/// </summary>
 			[Field(Expression = "$.user_id", Type = SelectorType.JsonPath)]
 			public string user_id { get; set; }
+
+
+			/// <summary>
+			/// 用户编号
+			/// </summary>
+			[Field(Expression = "$.nick", Type = SelectorType.JsonPath)]
+			public string ShopName { get; set; }
 		}
 	}
 }
