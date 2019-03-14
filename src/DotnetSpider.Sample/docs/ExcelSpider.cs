@@ -22,28 +22,41 @@ namespace DotnetSpider.Sample.docs
 		[Entity(Expression = "#post_list div.post_item", Type = SelectorType.Css)]
 		public class BlogSearchEntry: BaseEntity
 		{
+			/// <summary>
+			/// 哈希码
+			/// </summary>
 			[Column]
 			[Field(Expression = "div.post_item_body", Type = SelectorType.Css)]
 			[ExcelFormatter("[html].innerText('h3 a',0).md5()")]
 			public string Hash { get; set; }
 
-
+			/// <summary>
+			/// 标题
+			/// </summary>
 			[Column]
 			[Field(Expression = "div.post_item_body", Type = SelectorType.Css)]
 			[ExcelFormatter("[html].innerText('h3 a',0)")]
 			public string Title { get; set; }
 
+			/// <summary>
+			/// 地址
+			/// </summary>
 			[Column]
 			[Field(Expression = "div.post_item_body", Type = SelectorType.Css)]
 			[ExcelFormatter("[html].OuterHtml('h3 a',0).attr('href')")]
 			public string Href { get; set; }
 
-
+			/// <summary>
+			/// 有地址
+			/// </summary>
 			[Column]
 			[Field(Expression = "div.post_item_body", Type = SelectorType.Css)]
 			[ExcelFormatter("[html].OuterHtml('h3 a',0).hasattr('href')")]
 			public bool HasHref { get; set; }
 
+			/// <summary>
+			/// 有样式
+			/// </summary>
 			[Column]
 			[Field(Expression = "div.post_item_body", Type = SelectorType.Css)]
 			[ExcelFormatter("[html].OuterHtml('h3 a',0).hasclass('href')")]

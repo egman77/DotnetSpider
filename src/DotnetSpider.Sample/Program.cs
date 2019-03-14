@@ -62,7 +62,10 @@ namespace DotnetSpider.Sample
 			//Crawl_jd_DbRequestBuilder();
 
 			//对百度搜索的结果保存到mysql数据库中
-			Crawl_baiduToMySql();
+			//Crawl_baiduToMySql();
+
+			//抓博客园
+			Crawl_cnblog();
 		}
 
 
@@ -175,6 +178,14 @@ namespace DotnetSpider.Sample
 		{
 			//将结果保存到mysql数据库中
 			var spider = new DefaultMySqlPipelineSpider();
+			spider.Run();
+		}
+
+
+		private static void Crawl_cnblog()
+		{
+			//抓cnblog 博客园
+			var spider = new ExcelSpider();
 			spider.Run();
 		}
 	}
