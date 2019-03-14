@@ -45,7 +45,7 @@ namespace DotnetSpider.Sample.docs
 					foreach (YoukuVideo entry in (List<YoukuVideo>)resultItem["VideoResult"])
 					{
 						_count++;
-						builder.Append($" [YoukuVideo {_count}] {entry.Name}");
+						builder.Append($" [YoukuVideo {_count}] {entry.Name} 图:{entry.ImagesUrl} 播:{entry.PlayUrl}\r\n");
 					}
 					Console.WriteLine(builder);
 					Console.WriteLine();
@@ -67,6 +67,8 @@ namespace DotnetSpider.Sample.docs
 				{
 					var video = new YoukuVideo();
 					video.Name = videoElement.Select(Selectors.XPath(".//img[@class='quic']/@alt")).GetValue();
+					video.ImagesUrl = videoElement.Select(Selectors.XPath(".//img[@class='quic']/@src")).GetValue();
+					video.PlayUrl = videoElement.Select(Selectors.XPath(".//a/@href")).GetValue();
 					results.Add(video);
 				}
 
@@ -90,6 +92,16 @@ namespace DotnetSpider.Sample.docs
 			/// 名称
 			/// </summary>
 			public string Name { get; set; }
+
+			/// <summary>
+			/// 图片url
+			/// </summary>
+			public string ImagesUrl { get; set; }
+
+			/// <summary>
+			/// 播放地址
+			/// </summary>
+			public string PlayUrl { get; set; }
 		}
 	}
 }
