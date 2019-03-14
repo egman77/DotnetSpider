@@ -81,6 +81,9 @@ namespace DotnetSpider.Sample.docs
 			}
 		}
 
+		/// <summary>
+		/// 优酷的视频
+		/// </summary>
 		private class YoukuVideo
 		{
 			/// <summary>

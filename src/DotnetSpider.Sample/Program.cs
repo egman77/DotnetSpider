@@ -47,7 +47,9 @@ namespace DotnetSpider.Sample
 			//Crawl_cnblogsWholeStie();
 
 			//抓携程数据
-			Crawl_ctripCity();
+			//Crawl_ctripCity();
+
+			Crawl_youku();
 		}
 
 
@@ -123,6 +125,13 @@ namespace DotnetSpider.Sample
 			//抓携程
 			var spider = new CtripCitySpider();
 			spider.Run();
+		}
+
+		private static void Crawl_youku()
+		{
+			//采样优酷
+			CustmizeProcessorAndPipelineSpider.Run();
+
 		}
 
 		
