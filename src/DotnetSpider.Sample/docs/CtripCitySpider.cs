@@ -26,23 +26,38 @@ namespace DotnetSpider.Sample.docs
 			AddPipeline(new ConsoleEntityPipeline());
 		}
 
+		/// <summary>
+		/// 携程城市
+		/// </summary>
 		[Schema("ctrip", "city")]
 		[Entity(Expression = "//div[@class='city_item']//a")]
 		class CtripCity : IBaseEntity
 		{
+			/// <summary>
+			/// 名称 
+			/// </summary>
 			[Column]
 			[Field(Expression = ".")]
 			public string name { get; set; }
 
+			/// <summary>
+			/// 标题
+			/// </summary>
 			[Column]
 			[Field(Expression = "./@title")]
 			public string title { get; set; }
 
+			/// <summary>
+			/// 城市
+			/// </summary>
 			[Column]
 			[Field(Expression = "./@data-id")]
 			[Unique("CITYID_RUNID")]
 			public string city_id { get; set; }
 
+			/// <summary>
+			/// 运行时间
+			/// </summary>
 			[Column]
 			[Unique("CITYID_RUNID")]
 			[Field(Expression = "Today", Type = SelectorType.Enviroment)]

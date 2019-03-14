@@ -36,20 +36,32 @@ namespace DotnetSpider.Sample.docs
 			[Entity(Expression = ".//div[@class='result']", Type = SelectorType.XPath)]
 			class Result : BaseEntity
 			{
+				/// <summary>
+				/// 关键字
+				/// </summary>
 				[Column]
 				[Field(Expression = "Keyword", Type = SelectorType.Enviroment)]
 				public string Keyword { get; set; }
 
+				/// <summary>
+				/// 标题
+				/// </summary>
 				[Column]
 				[Field(Expression = ".//h3[@class='c-title']/a")]
 				[ReplaceFormatter(NewValue = "", OldValue = "<em>")]
 				[ReplaceFormatter(NewValue = "", OldValue = "</em>")]
 				public string Title { get; set; }
 
+				/// <summary>
+				/// 网址
+				/// </summary>
 				[Column]
 				[Field(Expression = ".//h3[@class='c-title']/a/@href")]
 				public string Url { get; set; }
 
+				/// <summary>
+				/// 网站地址
+				/// </summary>
 				[Column]
 				[Field(Expression = ".//div/p[@class='c-author']/text()")]
 				[NullFormatter]

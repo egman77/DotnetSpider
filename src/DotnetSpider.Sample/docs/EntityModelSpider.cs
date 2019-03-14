@@ -35,6 +35,7 @@ namespace DotnetSpider.Sample.docs
 			[Entity(Expression = ".//div[@class='result']", Type = SelectorType.XPath)]
 			class BaiduSearchEntry : BaseEntity
 			{
+				
 				/// <summary>
 				/// 关键词
 				/// </summary>

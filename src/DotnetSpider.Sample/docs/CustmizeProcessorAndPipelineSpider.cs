@@ -83,6 +83,9 @@ namespace DotnetSpider.Sample.docs
 
 		private class YoukuVideo
 		{
+			/// <summary>
+			/// 名称
+			/// </summary>
 			public string Name { get; set; }
 		}
 	}

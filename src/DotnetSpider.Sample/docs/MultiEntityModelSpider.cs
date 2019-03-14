@@ -30,15 +30,27 @@ namespace DotnetSpider.Sample.docs
 			[Entity(Expression = "//div[@class='post_item']")]
 			class News : BaseEntity
 			{
+				/// <summary>
+				/// 名称
+				/// </summary>
 				[Field(Expression = ".//a[@class='titlelnk']")]
 				public string Name { get; set; }
 
+				/// <summary>
+				/// 作者
+				/// </summary>
 				[Field(Expression = ".//div[@class='post_item_foot']/a[1]")]
 				public string Author { get; set; }
 
+				/// <summary>
+				/// 发布时间
+				/// </summary>
 				[Field(Expression = ".//div[@class='post_item_foot']/text()")]
 				public string PublishTime { get; set; }
 
+				/// <summary>
+				/// 网址
+				/// </summary>
 				[Field(Expression = ".//a[@class='titlelnk']/@href")]
 				public string Url { get; set; }
 			}
@@ -46,15 +58,27 @@ namespace DotnetSpider.Sample.docs
 			[Entity(Expression = "//div[@class='post_item']")]
 			class BlogSumary : BaseEntity
 			{
+				/// <summary>
+				/// 名称
+				/// </summary>
 				[Field(Expression = ".//a[@class='titlelnk']")]
 				public string Name { get; set; }
 
+				/// <summary>
+				/// 作者
+				/// </summary>
 				[Field(Expression = ".//div[@class='post_item_foot']/a[1]")]
 				public string Author { get; set; }
 
+				/// <summary>
+				/// 发布时间
+				/// </summary>
 				[Field(Expression = ".//div[@class='post_item_foot']/text()")]
 				public string PublishTime { get; set; }
 
+				/// <summary>
+				/// 网址
+				/// </summary>
 				[Field(Expression = ".//a[@class='titlelnk']/@href")]
 				public string Url { get; set; }
 			}

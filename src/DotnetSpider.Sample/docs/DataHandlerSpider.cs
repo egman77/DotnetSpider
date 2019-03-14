@@ -107,21 +107,36 @@ namespace DotnetSpider.Sample.docs
 		[Entity(Expression = "$.mods.itemlist.data.auctions[*]", Type = SelectorType.JsonPath)]
 		private class TaobaoItem : IBaseEntity
 		{
+			/// <summary>
+			/// 价格
+			/// </summary>
 			[Field(Expression = "$.view_price", Type = SelectorType.JsonPath)]
 			public string price { get; set; }
 
+			/// <summary>
+			/// 类型
+			/// </summary>
 			[Field(Expression = "$.category", Type = SelectorType.JsonPath)]
 			public string cat { get; set; }
 
+			/// <summary>
+			/// 付款
+			/// </summary>
 			[Field(Expression = "$.view_sales", Type = SelectorType.JsonPath)]
 			[ReplaceFormatter(NewValue = "", OldValue = "付款")]
 			[ReplaceFormatter(NewValue = "", OldValue = "收货")]
 			[ReplaceFormatter(NewValue = "", OldValue = "人")]
 			public string sold { get; set; }
 
+			/// <summary>
+			/// 标题编号
+			/// </summary>
 			[Field(Expression = "$.nid", Type = SelectorType.JsonPath)]
 			public string item_id { get; set; }
 
+			/// <summary>
+			/// 用户编号
+			/// </summary>
 			[Field(Expression = "$.user_id", Type = SelectorType.JsonPath)]
 			public string user_id { get; set; }
 		}

@@ -44,7 +44,10 @@ namespace DotnetSpider.Sample
 			//Crawl_xxCookie();
 
 			//抓cnblogs整站
-			Crawl_cnblogsWholeStie();
+			//Crawl_cnblogsWholeStie();
+
+			//抓携程数据
+			Crawl_ctripCity();
 		}
 
 
@@ -113,9 +116,13 @@ namespace DotnetSpider.Sample
 		{
 			//抓cnblogs整站
 			CrawlerWholeSiteSpider.Run();
-			
+		}
 
-
+		private static void Crawl_ctripCity()
+		{
+			//抓携程
+			var spider = new CtripCitySpider();
+			spider.Run();
 		}
 
 		

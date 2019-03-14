@@ -27,11 +27,17 @@ namespace DotnetSpider.Sample.docs
 		[Entity(Expression = "$.[*]", Type = SelectorType.JsonPath)]
 		class Item : IBaseEntity
 		{
+			/// <summary>
+			/// 最小库存单位
+			/// </summary>
 			[Column]
 			[Unique]
 			[Field(Expression = "$.pid", Type = SelectorType.JsonPath)]
 			public string Sku { get; set; }
 
+			/// <summary>
+			/// 商店编号
+			/// </summary>
 			[Column]
 			[Update]
 			[Field(Expression = "$.shopId", Type = SelectorType.JsonPath)]

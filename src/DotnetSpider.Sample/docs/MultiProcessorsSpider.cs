@@ -117,12 +117,27 @@ namespace DotnetSpider.Sample.docs
 				page.AddResultItem("News", results);
 			}
 		}
-
+		
+		/// <summary>
+		/// 博客摘要
+		/// </summary>
 		class BlogSumary
 		{
+			/// <summary>
+			///名称 
+			/// </summary>
 			public string Name { get; set; }
+			/// <summary>
+			/// 作者
+			/// </summary>
 			public string Author { get; set; }
+			/// <summary>
+			/// 发布时间
+			/// </summary> 
 			public string PublishTime { get; set; }
+			/// <summary>
+			/// 网址
+			/// </summary>
 			public string Url { get; set; }
 
 			public override string ToString()
@@ -131,10 +146,22 @@ namespace DotnetSpider.Sample.docs
 			}
 		}
 
+		/// <summary>
+		/// 新闻
+		/// </summary>
 		class News
 		{
+			/// <summary>
+			/// 名称
+			/// </summary>
 			public string Name { get; set; }
+			/// <summary>
+			/// 发布时间
+			/// </summary>
 			public string PublishTime { get; set; }
+			/// <summary>
+			/// 网址
+			/// </summary>
 			public string Url { get; set; }
 			public override string ToString()
 			{
