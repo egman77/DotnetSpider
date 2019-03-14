@@ -10,6 +10,7 @@ using System.Collections.Generic;
 namespace DotnetSpider.Sample.docs
 {
 	/// <summary>
+	/// 在爬网结束后,检查数据库的数据, 清空每一个"网站url"值
 	/// After spider complete, check the data in mysql, website are null in every row.
 	/// </summary>
 	public class CustomizeFormatterSpider

@@ -10,6 +10,9 @@ using System.Text;
 
 namespace DotnetSpider.Sample.docs
 {
+	/// <summary>
+	/// 自定义处理器与自定义管道
+	/// </summary>
 	public class CustmizeProcessorAndPipelineSpider
 	{
 		public static void Run()

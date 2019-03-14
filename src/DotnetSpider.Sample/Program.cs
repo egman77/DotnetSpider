@@ -49,7 +49,8 @@ namespace DotnetSpider.Sample
 			//抓携程数据
 			//Crawl_ctripCity();
 
-			Crawl_youku();
+			//Crawl_youku();
+			Crawl_BaiduSearch3_Formatted();
 		}
 
 
@@ -134,6 +135,11 @@ namespace DotnetSpider.Sample
 
 		}
 
-		
+		private static void Crawl_BaiduSearch3_Formatted()
+		{
+			//格式化实体的属性
+			CustomizeFormatterSpider.Run();
+		}
+
 	}
 }
