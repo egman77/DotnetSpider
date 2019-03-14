@@ -56,7 +56,10 @@ namespace DotnetSpider.Sample
 			//Crawl_BaiduSearch3_Formatted();
 
 			//对淘宝的商品按数据量处理
-			Crawl_taobao_DataHandler();
+			//Crawl_taobao_DataHandler();
+
+			//对京东的请求,生成数据库脚本
+			Crawl_jd_DbRequestBuilder();
 		}
 
 
@@ -152,6 +155,16 @@ namespace DotnetSpider.Sample
 			//淘宝对商品按销售量进行处理
 			DataHandlerSpider.Run();
 			
+		}
+
+
+		private static void Crawl_jd_DbRequestBuilder()
+		{
+			//从 数据库读数据 并生成 对京东的采集请求 
+			//原练习访问地址是否要登录才能使用?
+			//
+			var spider = new DbRequestBuilderSpider();
+			spider.Run();
 		}
 
 	}
