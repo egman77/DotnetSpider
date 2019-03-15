@@ -74,7 +74,10 @@ namespace DotnetSpider.Sample
 			//Crawl_multiProcessors();
 
 			//爬百度并保存到mysql数据库中
-			Crawl_saveAsMySqlDb();
+			//Crawl_saveAsMySqlDb();
+
+			//爬京东所有商品列表
+			Crawl_jdAllList();
 		}
 
 
@@ -215,6 +218,13 @@ namespace DotnetSpider.Sample
 		{
 			//使用mysql保存爬百度的数据
 			MySqlEntityPipelineSpider.Run();
+		}
+
+
+		private static void Crawl_jdAllList()
+		{
+			//京东所有商品列表
+			OneForAllSpider.Run();
 		}
 	}
 }

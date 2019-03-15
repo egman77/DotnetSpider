@@ -1118,6 +1118,7 @@ namespace DotnetSpider.Core
 				stopwatch.Reset();
 				stopwatch.Start();
 
+				//执行每一个处理器
 				foreach (var processor in PageProcessors)
 				{
 					processor.Process(page);
