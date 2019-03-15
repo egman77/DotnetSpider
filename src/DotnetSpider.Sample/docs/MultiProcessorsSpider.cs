@@ -20,15 +20,16 @@ namespace DotnetSpider.Sample.docs
 			// 使用内存Scheduler、自定义PageProcessor、自定义Pipeline创建爬虫
 			Spider spider = Spider.Create(
 				new QueueDuplicateRemovedScheduler(),
-				new BlogSumaryProcessor(),
-				new NewsProcessor()).
-				AddPipeline(new MyPipeline());
+				new BlogSumaryProcessor()//,
+				//new NewsProcessor()
+				)
+				.AddPipeline(new MyPipeline()); //显示
 			spider.EncodingName = "UTF-8";
-			for (int i = 1; i < 5; ++i)
-			{
+			//for (int i = 1; i < 5; ++i)
+			//{
 				// 添加初始采集链接
 				spider.AddRequests("http://www.cnblogs.com");
-			}
+			//}
 			// 启动爬虫
 			spider.Run();
 		}
@@ -64,12 +65,15 @@ namespace DotnetSpider.Sample.docs
 			}
 		}
 
+		/// <summary>
+		/// 博客的处理
+		/// </summary>
 		private class BlogSumaryProcessor : BasePageProcessor
 		{
 			public BlogSumaryProcessor()
 			{
 				RequestExtractor = new XPathRequestExtractor(".");
-				Filter = new PatternFilter(new[] { "^http://www\\.cnblogs\\.com/$", "http://www\\.cnblogs\\.com/sitehome/p/\\d+" });
+				Filter = new PatternFilter(new[] { "^http://www\\.cnblogs\\.com/?$", "http://www\\.cnblogs\\.com/sitehome/p/\\d+" });
 			}
 
 			protected override void Handle(Page page)
@@ -92,11 +96,14 @@ namespace DotnetSpider.Sample.docs
 			}
 		}
 
+		/// <summary>
+		/// 新闻的处理
+		/// </summary>
 		private class NewsProcessor : BasePageProcessor
 		{
 			public NewsProcessor()
 			{
-				Filter = new PatternFilter(new[] { "^http://www\\.cnblogs\\.com/$", "^http://www\\.cnblogs\\.com/news/$", "www\\.cnblogs\\.com/news/\\d+" });
+				Filter = new PatternFilter(new[] { "^http://www\\.cnblogs\\.com/?$", "^http://www\\.cnblogs\\.com/news/$", "www\\.cnblogs\\.com/news/\\d+" });
 			}
 
 			protected override void Handle(Page page)

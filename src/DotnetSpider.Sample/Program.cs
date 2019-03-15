@@ -68,7 +68,13 @@ namespace DotnetSpider.Sample
 			//Crawl_cnblog();
 
 			//多个请求,多个实体,互不干扰方式抓取
-			Crawl_multiEntity();
+			//Crawl_multiEntity();
+
+			//多处理引擎
+			//Crawl_multiProcessors();
+
+			//爬百度并保存到mysql数据库中
+			Crawl_saveAsMySqlDb();
 		}
 
 
@@ -196,6 +202,19 @@ namespace DotnetSpider.Sample
 		{
 			//多个请求,多个实体,互不干扰方式抓取
 			MultiEntityModelSpider.Run();
+		}
+
+		private static void Crawl_multiProcessors()
+		{
+			//多处理引擎
+			MultiProcessorsSpider.Run();
+			
+		}
+
+		private static void Crawl_saveAsMySqlDb()
+		{
+			//使用mysql保存爬百度的数据
+			MySqlEntityPipelineSpider.Run();
 		}
 	}
 }

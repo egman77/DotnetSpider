@@ -27,6 +27,10 @@ namespace DotnetSpider.Sample.docs
 				AddPipeline(new MySqlEntityPipeline());
 			}
 
+
+			/// <summary>
+			/// schema  指定了 baidu数据库,  baidu_search_result表操作
+			/// </summary>
 			[Entity(Expression = ".//div[@class='result']", Type = SelectorType.XPath)]
 			[Schema("baidu", "baidu_search_result")]
 			class Result : BaseEntity

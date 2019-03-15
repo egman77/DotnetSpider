@@ -10,6 +10,7 @@ namespace DotnetSpider.Extension.Pipeline
 {
 	/// <summary>
 	/// 把解析到的爬虫实体数据存到MySql中
+	/// 注意, 默认硬生成了针对百度名的数据库,在里面进行操作
 	/// </summary>
 	public class MySqlEntityPipeline : DbEntityPipeline
 	{
