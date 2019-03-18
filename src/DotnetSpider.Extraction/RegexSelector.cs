@@ -50,6 +50,7 @@ namespace DotnetSpider.Extraction
 
 			var type = (Type)text.GetType();
 			StringBuilder builder = new StringBuilder();
+			//对于字符串,可以优化处理一下,否则会一个一个字符装入
 			if (typeof(IEnumerable).IsAssignableFrom(type))
 			{
 				foreach (var l in (IEnumerable)text)
@@ -65,7 +66,11 @@ namespace DotnetSpider.Extraction
 			Match match = _regex.Match(builder.ToString());
 			if (match.Success)
 			{
-				return match.Groups.Count > _group ? match.Groups[_group].Value : null;
+				//.net 框架里, match.Groups[0] 不是待匹配的文本, 而是结果1
+
+				//return match.Groups.Count > _group ? match.Groups[_group].Value : null;
+				var newGroup = _group - 1;
+				return match.Groups.Count > newGroup ? match.Groups[newGroup].Value:null;
 			}
 			return null;
 		}
@@ -101,11 +106,22 @@ namespace DotnetSpider.Extraction
 			var matches = _regex.Matches(builder.ToString());
 
 			List<dynamic> results = new List<dynamic>();
+			//.net 框架里, match.Groups[0] 不是待匹配的文本, 而是结果1
+			
+			//foreach (Match match in matches)
+			//{
+			//	if (match.Groups.Count > _group)
+			//	{
+			//		results.Add(match.Groups[_group].Value);
+			//	}
+			//}
+
+			var newGroup = _group - 1;
 			foreach (Match match in matches)
 			{
-				if (match.Groups.Count > _group)
+				if (match.Groups.Count > newGroup)
 				{
-					results.Add(match.Groups[_group].Value);
+					results.Add(match.Groups[newGroup].Value);
 				}
 			}
 			return results;

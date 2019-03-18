@@ -64,7 +64,7 @@ namespace DotnetSpider.Core.Processor
 				}
 			}
 
-			Handle(page);
+			Handle(page);//真正处理
 
 			if (LastPageChecker != null && LastPageChecker.IsLastPage(page)) return;
 

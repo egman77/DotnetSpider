@@ -139,7 +139,7 @@ namespace DotnetSpider.Core
 			try
 			{
 				StartTime = DateTime.Now;
-				Execute(arguments);
+				Execute(arguments); //真正的执行处
 			}
 			finally
 			{

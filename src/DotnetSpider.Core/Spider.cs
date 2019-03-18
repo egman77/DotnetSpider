@@ -793,7 +793,7 @@ namespace DotnetSpider.Core
 								var result = HandleRequest(sw, request, downloader);
 								if (result.Item1)
 								{
-									OnSuccess(request);
+									OnSuccess(request); //真正处理
 									Logger.LogInformation(
 										$"Crawl {request.Url} success, results {result.Item2}, effectedRow {result.Item3}.");
 								}

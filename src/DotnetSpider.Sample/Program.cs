@@ -1,6 +1,8 @@
 ﻿using DotnetSpider.Sample.docs;
+using System;
 #if NETCOREAPP
 using System.Text;
+using System.Text.RegularExpressions;
 
 #else
 using System.Threading;
@@ -77,7 +79,12 @@ namespace DotnetSpider.Sample
 			//Crawl_saveAsMySqlDb();
 
 			//爬京东所有商品列表
-			Crawl_jdAllList();
+			//Crawl_jdAllList();
+
+			//爬博客园正则表达式选择
+			Crawl_cnblogRegexSelector();
+
+			//Func1();
 		}
 
 
@@ -226,5 +233,22 @@ namespace DotnetSpider.Sample
 			//京东所有商品列表
 			OneForAllSpider.Run();
 		}
+
+		private static void Crawl_cnblogRegexSelector()
+		{
+			//博客中国正则表达式挑选
+			var spider = new RegexSelectorSpider();
+			spider.Run();
+		}
+
+		//private static void Func1()
+		//{
+
+		//	var text = "这是一个中国人,你是谁?";
+		//	var r = new Regex($"是",RegexOptions.IgnoreCase);
+		//	var match = r.Match(text);
+
+		//	Console.WriteLine(match.Groups.Count);
+		//}
 	}
 }

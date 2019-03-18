@@ -7,6 +7,9 @@ using System.Diagnostics;
 
 namespace DotnetSpider.Extraction.Model
 {
+	/// <summary>
+	/// 模型提取
+	/// </summary>
 	public class ModelExtractor : IModelExtractor
 	{
 		/// <summary>
@@ -77,6 +80,14 @@ namespace DotnetSpider.Extraction.Model
 			return results;
 		}
 
+		/// <summary>
+		/// 提取对象
+		/// </summary>
+		/// <param name="model"></param>
+		/// <param name="obj"></param>
+		/// <param name="root"></param>
+		/// <param name="index"></param>
+		/// <returns></returns>
 		private Dictionary<string, dynamic> ExtractObject(IModel model, ISelectable obj, Selectable root, int index)
 		{
 			Dictionary<string, dynamic> dataObject = new Dictionary<string, dynamic>();
@@ -97,6 +108,14 @@ namespace DotnetSpider.Extraction.Model
 			return dataObject;
 		}
 
+		/// <summary>
+		/// 提取字段
+		/// </summary>
+		/// <param name="field"></param>
+		/// <param name="item"></param>
+		/// <param name="root"></param>
+		/// <param name="index"></param>
+		/// <returns></returns>
 		private string ExtractField(Field field, ISelectable item, Selectable root, int index)
 		{
 			var selector = field?.ToSelector();
