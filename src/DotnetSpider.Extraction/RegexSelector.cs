@@ -66,11 +66,12 @@ namespace DotnetSpider.Extraction
 			Match match = _regex.Match(builder.ToString());
 			if (match.Success)
 			{
-				//.net 框架里, match.Groups[0] 不是待匹配的文本, 而是结果1
+				
 
-				//return match.Groups.Count > _group ? match.Groups[_group].Value : null;
-				var newGroup = _group - 1;
-				return match.Groups.Count > newGroup ? match.Groups[newGroup].Value:null;
+				return match.Groups.Count > _group ? match.Groups[_group].Value : null;
+				//.net 框架里, match.Groups[0] 不是待匹配的文本, 而是结果1
+				//var newGroup = _group - 1;
+				//return match.Groups.Count > newGroup ? match.Groups[newGroup].Value:null;
 			}
 			return null;
 		}
@@ -106,24 +107,24 @@ namespace DotnetSpider.Extraction
 			var matches = _regex.Matches(builder.ToString());
 
 			List<dynamic> results = new List<dynamic>();
-			//.net 框架里, match.Groups[0] 不是待匹配的文本, 而是结果1
 			
-			//foreach (Match match in matches)
-			//{
-			//	if (match.Groups.Count > _group)
-			//	{
-			//		results.Add(match.Groups[_group].Value);
-			//	}
-			//}
 
-			var newGroup = _group - 1;
 			foreach (Match match in matches)
 			{
-				if (match.Groups.Count > newGroup)
+				if (match.Groups.Count > _group)
 				{
-					results.Add(match.Groups[newGroup].Value);
+					results.Add(match.Groups[_group].Value);
 				}
 			}
+			//.net 框架里, match.Groups[0] 不是待匹配的文本, 而是结果1
+			//var newGroup = _group - 1;
+			//foreach (Match match in matches)
+			//{
+			//	if (match.Groups.Count > newGroup)
+			//	{
+			//		results.Add(match.Groups[newGroup].Value);
+			//	}
+			//}
 			return results;
 		}
 

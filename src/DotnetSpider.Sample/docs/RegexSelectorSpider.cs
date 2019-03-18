@@ -17,7 +17,8 @@ namespace DotnetSpider.Sample.docs
 
 		class HomePage : IBaseEntity
 		{
-			[Field(Expression = "<a.*?园子</a>", Type = SelectorType.Regex, Arguments = "1")]
+			//[Field(Expression = "<a.*?园子</a>", Type = SelectorType.Regex, Arguments = "1")]
+			[Field(Expression = "<a.*?园子</a>", Type = SelectorType.Regex, Arguments = "0")]
 			public string Category { get; set; }
 		}
 	}
