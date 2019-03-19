@@ -47,6 +47,9 @@ namespace DotnetSpider.Extension.Downloader
 			AutoCloseErrorDialog();
 		}
 
+		/// <summary>
+		/// 自动关闭错误对话框
+		/// </summary>
 		private void AutoCloseErrorDialog()
 		{
 #if NETFRAMEWORK
@@ -100,11 +103,17 @@ namespace DotnetSpider.Extension.Downloader
 				, null));
 		}
 
+		/// <summary>
+		/// 处理
+		/// </summary>
+		/// <param name="request">请求</param>
+		/// <param name="downloader"></param>
 		public void Handle(ref Request request, IDownloader downloader)
 		{
 			if (!(downloader is WebDriverDownloader d) || d._driver != null) return;
+			//实例化浏览器
 			d._driver = WebDriverUtil.Open(_browser, _option);
-			d._driver.Url = request.Url;
+			d._driver.Url = request.Url; //传入请求地址
 			Logger?.LogInformation("实例化浏览器");
 			var cookies = GetAllCookies(CookieContainer);
 			foreach (System.Net.Cookie cookie in cookies)
@@ -116,6 +125,11 @@ namespace DotnetSpider.Extension.Downloader
 			}
 		}
 
+		/// <summary>
+		/// 获取全部的cookies
+		/// </summary>
+		/// <param name="cc"></param>
+		/// <returns></returns>
 		private List<System.Net.Cookie> GetAllCookies(CookieContainer cc)
 		{
 			var lstCookies = new List<System.Net.Cookie>();
@@ -136,11 +150,17 @@ namespace DotnetSpider.Extension.Downloader
 			return lstCookies;
 		}
 
+		/// <summary>
+		/// 下载内容
+		/// </summary>
+		/// <param name="request"></param>
+		/// <returns></returns>
 		[MethodImpl(MethodImplOptions.Synchronized)]
 		protected override DotnetSpider.Downloader.Response DownloadContent(Request request)
 		{
 			try
 			{
+				//网络中心调度
 				NetworkCenter.Current.Execute("WebDriverDownload", () =>
 				{
 					_driver.Navigate().GoToUrl(request.Url);
@@ -151,6 +171,7 @@ namespace DotnetSpider.Extension.Downloader
 					}
 				});
 				Thread.Sleep(_driverWaitTime);
+				//下载内容(从设备的页面来源处提取)
 				var response = new DotnetSpider.Downloader.Response(request) {Content = _driver.PageSource};
 				DetectContentType(response, null);
 				return response;

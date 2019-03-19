@@ -111,7 +111,9 @@ namespace DotnetSpider.Extension.Infrastructure
 			IWebDriver e = null;
 			switch (browser)
 			{
-				case Browser.Firefox:
+
+				case Browser.Firefox://火狐
+
 					string path = Environment.ExpandEnvironmentVariables("%APPDATA%") + @"\Mozilla\Firefox\Profiles\";
 					string[] pathsToProfiles = Directory.GetDirectories(path, "*.webdriver", SearchOption.TopDirectoryOnly);
 					var profile = pathsToProfiles.Length == 1 ? new FirefoxProfile(pathsToProfiles[0], false) : new FirefoxProfile();
@@ -150,8 +152,10 @@ namespace DotnetSpider.Extension.Infrastructure
 					options.Profile = profile;
 					e = new FirefoxDriver(options);
 					break;
-				case Browser.Chrome:
 
+				case Browser.Chrome://google
+
+					//调用第三方库打开,chrome服务
 					ChromeDriverService cds = ChromeDriverService.CreateDefaultService(string.IsNullOrWhiteSpace(Env.ChromeDriverPath) ? Env.BaseDirectory : Env.ChromeDriverPath);
 					cds.HideCommandPromptWindow = true;
 					ChromeOptions opt = new ChromeOptions();
@@ -161,12 +165,15 @@ namespace DotnetSpider.Extension.Infrastructure
 					}
 					if (!string.IsNullOrEmpty(option.Proxy))
 					{
+						//支持代理
 						opt.Proxy = new OpenQA.Selenium.Proxy() { HttpProxy = option.Proxy };
 					}
 					if (option.Headless)
 					{
+						//无头部
 						opt.AddArgument("--headless");
 					}
+					//创建chrome浏览器
 					e = new ChromeDriver(cds, opt);
 					break;
 			}
