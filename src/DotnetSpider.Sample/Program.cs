@@ -82,8 +82,10 @@ namespace DotnetSpider.Sample
 			//Crawl_jdAllList();
 
 			//爬博客园正则表达式选择
-			Crawl_cnblogRegexSelector();
+			//Crawl_cnblogRegexSelector();
 
+			//以web驱动方式 爬京东
+			Crawl_jdWebDriverDownloader();
 			//Func1();
 		}
 
@@ -239,6 +241,17 @@ namespace DotnetSpider.Sample
 			//博客中国正则表达式挑选
 			var spider = new RegexSelectorSpider();
 			spider.Run();
+
+
+		}
+
+		private static void Crawl_jdWebDriverDownloader()
+		{
+			//以web方式下载
+			var spider=new WebDriverDownloaderSpider();
+			spider.Run();
+
+
 		}
 
 		//private static void Func1()

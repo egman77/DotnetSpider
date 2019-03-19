@@ -6,6 +6,7 @@ using DotnetSpider.Extension.Pipeline;
 using DotnetSpider.Extraction;
 using DotnetSpider.Extraction.Model;
 using DotnetSpider.Extraction.Model.Attribute;
+using DotnetSpider.Extraction.Model.Formatter;
 using System.Collections.Generic;
 
 namespace DotnetSpider.Sample.docs
@@ -47,7 +48,8 @@ namespace DotnetSpider.Sample.docs
 
 			[Field(Expression = "./div[5]/strong/a")]
 			[Column()]
-			public long CommentsCount { get; set; }
+			//[ReplaceFormatter(NewValue = "0000", OldValue = "万+")]
+			public string CommentsCount { get; set; }
 
 			[Field(Expression = ".//div[@class='p-shop']/@data-shop_name")]
 			[Column(Length = 200)]
